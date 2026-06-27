@@ -1,5 +1,7 @@
-import {createTripService, getTripsService, getTripByIdService, updateTripService, deleteTripService, deleteAllTripsService, 
-        generateItineraryService, regenerateDayService, updateActivityService, addActivityService} from "../services/trip.service.js";
+import {createTripService, getTripsService, getTripByIdService, updateTripService, deleteTripService, deleteAllTripsService} from "../services/trip.service.js";
+
+import { generateItineraryService, regenerateDayService } from "../services/itinerary.service.js"
+import { updateActivityService, addActivityService } from "../services/activity.service.js"
 
 export const createTrip = async (req, res) => {
     try {
