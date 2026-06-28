@@ -1,7 +1,7 @@
 import {createTripService, getTripsService, getTripByIdService, updateTripService, deleteTripService, deleteAllTripsService} from "../services/trip.service.js";
 
 import { generateItineraryService, regenerateDayService } from "../services/itinerary.service.js"
-import { updateActivityService, addActivityService, deleteActivityService } from "../services/activity.service.js"
+import { updateActivityService, addActivityService, deleteActivityService, regenerateActivityService } from "../services/activity.service.js"
 
 export const createTrip = async (req, res) => {
     try {
@@ -194,6 +194,29 @@ export const deleteActivity = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Activity deleted successfully",
+            data: trip
+        });
+
+    } catch (error) {
+        return res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.message
+        });
+    }
+}
+
+export const regenerateActivity = async (req, res) => {
+    try {
+        const trip = await regenerateActivityService(
+        req.user._id,
+        req.params.id,
+        Number(req.params.dayNumber),
+        Number(req.params.activityIndex)
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: "Activity regenerated successfully",
             data: trip
         });
 

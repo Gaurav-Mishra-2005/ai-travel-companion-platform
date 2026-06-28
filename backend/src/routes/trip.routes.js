@@ -1,7 +1,7 @@
 import express from "express";
 import authMiddleware from "../middleware/auth.middleware.js";
 import { createTrip, getTrips, getTripById, updateTrip, deleteTrip, deleteAllTrips,
-         generateItinerary, regenerateDay, updateActivity, addActivity, deleteActivity } from "../controllers/trip.controller.js";
+         generateItinerary, regenerateDay, updateActivity, addActivity, deleteActivity, regenerateActivity } from "../controllers/trip.controller.js";
 
 const router = express.Router();
 
@@ -17,6 +17,8 @@ router.post("/:id/regenerate-day/:dayNumber",authMiddleware,regenerateDay);
 router.patch("/:id/day/:dayNumber/activity/:activityIndex", authMiddleware, updateActivity);
 router.post("/:id/day/:dayNumber/activity", authMiddleware, addActivity);
 router.delete("/:id/day/:dayNumber/activity/:activityIndex", authMiddleware, deleteActivity);
+
+router.post("/:id/day/:dayNumber/activity/:activityIndex/regenerate", authMiddleware, regenerateActivity);
 
 
 
