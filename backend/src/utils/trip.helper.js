@@ -1,6 +1,8 @@
-import { searchPlace } from "./location.service.js";
+import Trip from "../models/trip.model.js";
+import { searchPlace } from "../services/location.service.js";
+import ApiError from "./apiError.js";
 
-const getAuthorizedTrip = async (userId, tripId) => {
+export const getAuthorizedTrip = async (userId, tripId) => {
     const trip = await Trip.findById(tripId);
 
     if (!trip)
@@ -12,7 +14,7 @@ const getAuthorizedTrip = async (userId, tripId) => {
     return trip;
 };
 
-const enrichLocation = async (activity) => {
+export const enrichLocation = async (activity) => {
     if (!activity.location) return;
 
     const place = await searchPlace(activity.location);
@@ -31,5 +33,3 @@ const enrichLocation = async (activity) => {
         activity.osmId = null;
     }
 };
-
-export default {getAuthorizedTrip, enrichLocation};

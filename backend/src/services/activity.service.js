@@ -87,3 +87,35 @@ export const addActivityService = async (
        
 
 };
+
+export const deleteActivityService = async (
+        userId,
+        tripId,
+        dayNumber,
+        activityIndex
+    ) => {
+    const trip = await getAuthorizedTrip(userId, tripId);
+
+    if (!trip.itineraryGenerated || !trip.itinerary) {
+        throw new ApiError( 400, "Generate itinerary first");
+    }
+
+    const day = trip.itinerary.find(d => d.day === dayNumber);
+    if (!day) {
+        throw new ApiError(404, `Day ${dayNumber} not found`);
+    }
+
+    const activity = day.activities[activityIndex];
+    if (!activity) {
+        throw new ApiError(404, "Activity not found");
+    }
+
+    day.activities.splice(activityIndex, 1);
+
+        trip.markModified("itinerary");
+        await trip.save();
+
+        return trip;
+       
+
+};
