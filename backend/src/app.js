@@ -9,20 +9,11 @@ import tripRoutes from "./routes/trip.routes.js";
 
 const app = express();
 
-const corsOptions = {
-  origin: process.env.FRONTEND_URL,
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-app.use((req, res, next) => {
-  console.log(req.method, req.originalUrl);
-  next();
-});
-
 // Middleware
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  credentials: true,
+}));
 
 app.use(helmet());
 app.use(morgan("dev"));
