@@ -1,1 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-primary: #6366f1;    /* Space Indigo */
+  --color-brand-secondary: #8b5cf6;  /* Space Violet */
+  --color-brand-success: #10b981;    /* Emerald Accent */
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+/* Custom global overrides */
+html, body {
+  background-color: #ffffff; 
+  color: #18181b; 
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.15s ease;
+}
+
+html.dark, html.dark body {
+  background-color: #09090b; /* zinc-950 */
+  color: #f4f4f5; /* zinc-100 */
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #27272a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Leaflet container canvas sizing and default light styles */
+.leaflet-container {
+  background: #f4f4f5 !important;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(228, 228, 231, 0.8);
+}
+
+/* Leaflet dark mode overrides */
+html.dark .leaflet-container {
+  background: #18181b !important;
+  border: 1px solid rgba(39, 39, 42, 0.6);
+}
+
+html.dark .leaflet-bar {
+  border: 1px solid rgba(63, 63, 70, 0.4) !important;
+  box-shadow: none !important;
+}
+
+html.dark .leaflet-bar a {
+  background-color: #18181b !important;
+  color: #f4f4f5 !important;
+  border-bottom: 1px solid rgba(63, 63, 70, 0.4) !important;
+}
+
+html.dark .leaflet-bar a:hover {
+  background-color: #27272a !important;
+  color: #ffffff !important;
+}
+
+html.dark .leaflet-popup-content-wrapper {
+  background: #18181b !important;
+  color: #f4f4f5 !important;
+  border: 1px solid rgba(63, 63, 70, 0.6);
+  border-radius: 0.5rem !important;
+}
+
+html.dark .leaflet-popup-tip {
+  background: #18181b !important;
+  border: 1px solid rgba(63, 63, 70, 0.6);
+}
+
+/* Skeleton Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f4f4f5 25%, #e4e4e7 50%, #f4f4f5 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+html.dark .skeleton-shimmer {
+  background: linear-gradient(90deg, #18181b 25%, #27272a 50%, #18181b 75%);
+  background-size: 200% 100%;
+}
