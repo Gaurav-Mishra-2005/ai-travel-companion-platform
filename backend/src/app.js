@@ -18,7 +18,6 @@ const corsOptions = {
 
 // Middleware
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));  // important for preflight requests
 
 app.use(helmet());
 app.use(morgan("dev"));
