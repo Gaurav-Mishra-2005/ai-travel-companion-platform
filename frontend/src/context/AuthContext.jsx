@@ -102,6 +102,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  
   const updateProfile = async (name, picture) => {
     try {
       const response = await api.patch("/api/users/profile", { name, picture });
