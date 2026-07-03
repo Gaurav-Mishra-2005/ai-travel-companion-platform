@@ -12,7 +12,9 @@ const api = axios.create({
 export function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
+  if (parts.length === 2) {
+    return parts.pop().split(";").shift();
+  }
   return null;
 }
 
@@ -20,8 +22,10 @@ export function getCookie(name) {
 export function setCookie(name, value, days = 7) {
   const date = new Date();
   date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+
   const expires = `; expires=${date.toUTCString()}`;
-  document.cookie = `${name}=${value}${expires}; path=/; SameSite=Lax`;
+
+  document.cookie = `${name}=${value};${expires}; path=/; SameSite=Lax`;
 }
 
 // Helper to erase cookie
@@ -29,10 +33,7 @@ export function eraseCookie(name) {
   document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax`;
 }
 
-<<<<<<< HEAD
 // Attach JWT from cookie
-=======
->>>>>>> edb713fc09ea8cd2174beace710f6af6c143825b
 api.interceptors.request.use(
   (config) => {
     const token = getCookie("token");
