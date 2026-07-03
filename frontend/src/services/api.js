@@ -29,7 +29,10 @@ export function eraseCookie(name) {
   document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax`;
 }
 
+<<<<<<< HEAD
 // Attach JWT from cookie
+=======
+>>>>>>> edb713fc09ea8cd2174beace710f6af6c143825b
 api.interceptors.request.use(
   (config) => {
     const token = getCookie("token");
